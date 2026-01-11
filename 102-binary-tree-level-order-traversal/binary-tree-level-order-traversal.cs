@@ -12,27 +12,22 @@
  * }
  */
 public class Solution {
+    IList<IList<int>> result ;
     public IList<IList<int>> LevelOrder(TreeNode root) {
 
-IList<IList<int>> result = new List<IList<int>>();
-        Queue<TreeNode> q = new Queue<TreeNode>();
-        if(root == null) return result;
-        q.Enqueue(root);
-        while(q.Any()){
-            int size = q.Count;
-          
-            IList<int> newl = new List<int>();
-        
-            for(int i=0;i<size;i++){
-                  TreeNode t = q.Dequeue();
-                newl.Add(t.val);
-                if(t.left!=null )  q.Enqueue(t.left);
-                if(t.right!=null)  q.Enqueue(t.right);
-            }
-
-            result.Add(newl);
-        }
-
+        result = new List<IList<int>>();
+        dfs(root,0);
         return result;
+
+    }
+
+    private void dfs(TreeNode root,int level){
+        if(root==null) return;
+        if(level == result.Count){
+            result.Add(new List<int>());
+        }
+        result[level].Add(root.val);
+        dfs(root.left,level+1);
+        dfs(root.right,level+1);
     }
 }
