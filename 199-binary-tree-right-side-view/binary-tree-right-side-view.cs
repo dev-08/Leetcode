@@ -47,12 +47,10 @@ public class Solution {
         if(root == null) return ;
         if(result.Count == lvl){
             result.Add(root.val);
-        }else{
-            result[lvl] = root.val;
         }
 
-        dfs(root.left,lvl+1);
         dfs(root.right,lvl+1);
+        dfs(root.left,lvl+1);
         
     }
 }
