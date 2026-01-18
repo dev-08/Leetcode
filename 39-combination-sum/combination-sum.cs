@@ -9,11 +9,13 @@ public class Solution {
     public void helper(int[] candidates,int idx,int target,IList<int> path, IList<IList<int>> result )  {
         if(target<0 || idx == candidates.Length) return ; 
         if(target == 0){
-            result.Add(path);
+            result.Add(new List<int>(path));
             return;
         }
-        helper(candidates,idx+1,target,new List<int>(path),result);
+        helper(candidates,idx+1,target,path,result);
         path.Add(candidates[idx]);
-        helper(candidates,idx,target-candidates[idx],new List<int>(path),result);
+        helper(candidates,idx,target-candidates[idx],path,result);
+   
+        path.RemoveAt(path.Count - 1);
     }
 }
