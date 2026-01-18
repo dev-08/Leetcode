@@ -12,20 +12,21 @@
  * }
  */
 public class Solution {
-       IList<int> result = new List<int>();
+    int count = 0;
+    TreeNode result ;
     public int KthSmallest(TreeNode root, int k) {
-     
-        bst(root);
-        return result[k-1];
         
+        bst(root,k);
+        return result.val;
     }
 
 
-    public void bst(TreeNode root){
+    public void bst(TreeNode root,int k){
         if(root == null) return;
-
-        bst(root.left);
-        result.Add(root.val);
-        bst(root.right);
+      
+        bst(root.left,k);
+         count++;
+         if(count == k) {result = root ;}
+        bst(root.right,k);
     }
 }
