@@ -23,10 +23,13 @@ public class Solution {
 
     public void bst(TreeNode root,int k){
         if(root == null) return;
-      
+      if(result == null){
         bst(root.left,k);
+      }
          count++;
          if(count == k) {result = root ;}
+         if(result==null){
         bst(root.right,k);
+         }
     }
 }
