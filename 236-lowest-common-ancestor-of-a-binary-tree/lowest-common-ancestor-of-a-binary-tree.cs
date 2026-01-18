@@ -10,36 +10,28 @@
 
  */
 public class Solution {
-    IList<TreeNode> resultP = new List<TreeNode>();
-    IList<TreeNode> resultQ = new List<TreeNode>();
+
     public TreeNode LowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        dfs(root,p,q,new List<TreeNode>());
-        resultP.Add(resultP[resultP.Count-1]);
+      return  dfs(root,p,q);
 
-        resultQ.Add(resultQ[resultQ.Count-1]);
-        for(int i=0;i<resultP.Count;i++){
-            if(resultP[i]!=resultQ[i]){
-                return resultP[i-1];
-                break;
-            }
-        } 
-
-        return null;  
+     
     }
 
-    public void dfs(TreeNode root,TreeNode p ,TreeNode q, IList<TreeNode> path){
-        if(root == null) return;
-        path.Add(root);
-        if(root == p) 
-        {   resultP = new List<TreeNode>(path);
-            }
-        if(root == q) 
-        {   
-            resultQ = new List<TreeNode>(path);
-            
-            }
-        dfs(root.left,p,q,path);
-        dfs(root.right,p,q,path);
-        path.RemoveAt(path.Count - 1);
+    public TreeNode dfs(TreeNode root,TreeNode p ,TreeNode q){
+        if(root == null || root == p || root == q) return root;
+        TreeNode left = dfs(root.left,p,q);
+        TreeNode right = dfs(root.right,p,q);
+
+        if(left== null && right == null){
+            return null;
+        }else if( left==null && right!=null){
+            return right;
+        }else if(right == null && left!=null){
+            return left;
+        }else{
+            return root;
+        }
+
+
     }
 }
