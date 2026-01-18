@@ -6,6 +6,8 @@
  *     public TreeNode right;
  *     public TreeNode(int x) { val = x; }
  * }
+
+ log (n)
  */
 
 public class Solution {
@@ -21,7 +23,8 @@ public class Solution {
 
         if(p.val < root.val && q.val < root.val){
             bst(root.left,p,q);
-        }else if(p.val>root.val && q.val > root.val){
+        }
+         else if(p.val>root.val && q.val > root.val){
             bst(root.right,p,q);
         }
         else {
