@@ -24,23 +24,43 @@ public class Node {
 public class Solution {
     public Node Connect(Node root) {
         if(root == null) return null;
-    Node level = root;
-    while(level.left!=null){
-        Node curr = level;
-        while(curr!=null){
-            curr.left.next = curr.right;
-            if(curr.next!=null){
-                curr.right.next = curr.next.left;
-            }
-            curr = curr.next;
-        }
-        level = level.left;
+            dfs(root);
+            return root;
+    
     }
 
-    return root;
+    public void dfs(Node level){
+        if(level.left==null || level.right==null) {return ; }
+
+        level.left.next = level.right;
+        if(level.next!=null){
+            level.right.next = level.next.left;
+        }
+        dfs(level.left);
+        dfs(level.right);
     }
 }
 
+
+// public class Solution {
+//     public Node Connect(Node root) {
+//         if(root == null) return null;
+//     Node level = root;
+//     while(level.left!=null){
+//         Node curr = level;
+//         while(curr!=null){
+//             curr.left.next = curr.right;
+//             if(curr.next!=null){
+//                 curr.right.next = curr.next.left;
+//             }
+//             curr = curr.next;
+//         }
+//         level = level.left;
+//     }
+
+//     return root;
+//     }
+// }
 
 
 // public class Solution {
