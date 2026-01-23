@@ -2,15 +2,20 @@ public class Solution {
 
 
     public int Fib(int n) {
-          int [] arr = new int[n+1];
-  
-            arr[0] = 0;
-          if(n>0) {  arr[1] = 1; }
+         
+         int prev2 = 0;
+         int prev1 = 1;
+ int curr  = 0;
+
+          if(n==0) { return prev2;   }
+          if(n==1) {return prev1;}
             for(int i=2;i<(n+1);i++){
-                arr[i] = arr[i-1] + arr[i-2];
+                 curr = prev1+prev2;
+                prev2 = prev1;
+                prev1 = curr;
             }
 
-            return arr[n];
+            return curr;
 
     }
 
