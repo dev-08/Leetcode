@@ -13,30 +13,35 @@
  */
 public class Solution {
 
-    IList<int> result = new List<int>();
-
-    public int ClosestValue(TreeNode root, double target) {
-            double min = int.MaxValue;
+   double min = int.MaxValue;
         int ans  = 0;
 
-        dfs(root);
-        int n = result.Count;
-        for(int i=0;i<n;i++){
-            double diff = Math.Abs(target - result[i]);
-            if(diff<min){
-                min = diff;
-                ans = result[i];
-            }
-        }
+    public int ClosestValue(TreeNode root, double target) {
+        
+        dfs(root,target);
+       
+        
 
         return ans;
     }
 
 
-    public void dfs(TreeNode root){
+    public void dfs(TreeNode root,double target){
         if(root == null) return;
-        dfs(root.left);
-        result.Add(root.val);
-        dfs(root.right);
+int round = (int)target;
+         
+        if(root.val > round){
+            dfs(root.left,target);
+        }
+        double diff = Math.Abs(target - root.val);
+            if(diff<min){
+                min = diff;
+                ans = root.val;
+            }
+        
+        if(root.val<=round){
+            dfs(root.right,target);
+        }
+
     }
 }
