@@ -32,11 +32,11 @@ public class Solution {
         }
         return s;
     }
-    public void insert(string s){
+    public void insert(string s) {
         Node curr = root;
-        for(int i = 0;i<s.Length; i++){
+        for(int i = 0;i<s.Length; i++) {
             int idx = s[i] - 'a';
-            if(curr.children[idx] == null ){
+            if(curr.children[idx] == null ) {
                 curr.children[idx] = new Node();
             }
             curr = curr.children[idx];
