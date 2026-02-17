@@ -17,10 +17,8 @@ public class Solution {
         }  
 
 
-        foreach(var item in map){
-            result.Add(item.Value);
-        } 
+        
 
-        return result;
+        return map.Values.ToList<IList<string>>();
     }
 }
