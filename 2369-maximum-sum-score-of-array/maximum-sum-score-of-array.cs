@@ -1,29 +1,19 @@
 public class Solution {
     public long MaximumSumScore(int[] nums) {
-        long [] prefixval = new long[nums.Length];
-        int n = prefixval.Length;
-            prefixval[0] = nums[0];
-        for(int i =1 ;i<nums.Length;i++){
-            prefixval[i] = nums[i] + prefixval[i-1];
-        }   
-
-    long Maxval = int.MinValue;
-    long left = int.MinValue;
-    long right = int.MinValue;
-        for(int i = 0;i<n; i++){
-                long max = int.MinValue;
-                left = prefixval[i];
-                if(i==0){
-                    right = prefixval[n-1];
-                }
-                else{
-                    right = prefixval[n-1] - prefixval[i-1];
-                }
-
-                max = Math.Max(right,left);
-                Maxval = Math.Max(max,Maxval);
+        long sum = 0;
+        long left = 0;
+        long right = 0;
+        long ans = int.MinValue;
+        for(int i = 0;i<nums.Length;i++){
+            sum = sum + nums[i];
         }
 
-        return Maxval;
+        for(int i = 0 ;i<nums.Length;i++){
+            left = left + nums[i];
+            right = sum - left + nums[i];
+            ans = Math.Max(ans,Math.Max(left,right));
+
+        }
+        return ans;
     }
 }
