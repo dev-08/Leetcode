@@ -1,33 +1,26 @@
 public class Solution {
     public int FindMaxLength(int[] nums) {
+        int n = nums.Length ;
         Dictionary<int,int> map = new Dictionary<int,int>();
+
         map.Add(0,-1);
-        int maxval = 0;
-    
-        for(int i = 0 ;i<nums.Length ; i++){
-            if(nums[i] == 1){
-                if(i>0){
-                nums[i] = nums[i-1] + 1;
-                }
-                else {
-                    nums[i] = 1;
-                }
+        int rsum = 0;
+        int max = 0;
+        for(int i = 0;i<n;i++){
+            if(nums[i] == 1) {
+                rsum = rsum+1;
             }else{
-                if(i>0){
-                nums[i] =  nums[i-1] - 1;
-                }else{
-                    nums[i] = -1;
-                }
+                rsum = rsum-1;
             }
 
-
-            if(map.ContainsKey(nums[i])){
-              maxval = Math.Max(maxval,  i - map[nums[i]]) ;
+            if(map.ContainsKey(rsum)){
+                int diff = i - map[rsum];
+                max = Math.Max(max,diff);
             }else{
-                map.Add(nums[i],i);
+                map.Add(rsum,i);
             }
         }
 
-return maxval;
+        return max;
     }
 }
