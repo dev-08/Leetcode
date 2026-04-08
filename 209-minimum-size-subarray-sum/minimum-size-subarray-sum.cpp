@@ -14,9 +14,6 @@ public:
                      minval = min(minval,(f-s) + 1);
                     rsum = rsum - nums[s];
                     s++;
-
-                    
-
                 }
         }
 
