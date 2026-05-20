@@ -12,8 +12,6 @@ public:
             }else{
                 map[s[r]] = 1;
             }
-
-
             while(map.size()>2){
                 map[s[l]]--;
                 if(map[s[l]] < 1){
@@ -21,7 +19,6 @@ public:
                 }
                 l++;
             }
-
             maxval = max(maxval,(r-l)+1);
         }
 
